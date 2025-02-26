@@ -1,7 +1,7 @@
 # Documentação Inicial - Casa da Lauau
 
 ## Visão Geral
-Casa da Lauau é uma API para gestão de clientes e booking de serviços pet, como estadia e creche. O sistema permite cadastrar clientes, agendar serviços e gerenciar reservas de forma eficiente.
+Pethotel é uma API para gestão de clientes e booking de serviços pet, como estadia e creche. O sistema permite cadastrar clientes, agendar serviços e gerenciar reservas de forma eficiente.
 
 ## Tecnologias Utilizadas
 - **Java 21**
@@ -21,8 +21,8 @@ Casa da Lauau é uma API para gestão de clientes e booking de serviços pet, co
 ### Passos
 1. Clone o repositório:
    ```sh
-   git clone https://github.com/seu-usuario/casa-da-lauau.git
-   cd casa-da-lauau
+   git clone https://github.com/lucasandrebastos/pethotel.git
+   cd pethotel
    ```
 2. Compile e rode a aplicação:
    ```sh
@@ -33,12 +33,14 @@ Casa da Lauau é uma API para gestão de clientes e booking de serviços pet, co
 ## Endpoints Iniciais
 - `GET /reservations` - Lista todas as reservas
 - `POST /reservations` - Cria uma nova reserva
-- `GET /customers` - Lista todos os clientes
-- `POST /customers` - Cadastra um novo cliente
+- `GET /users` - Lista todos os clientes
+- `POST /users` - Cadastra um novo cliente
+- `GET /pets` - Lista todos os pets
+- `POST /pets` - Cadastra um novo pet
 
 ---
 
-# Documentação de Arquitetura - Casa da Lauau
+# Documentação de Arquitetura - PetHotel
 
 ## Arquitetura do Sistema
 A aplicação segue a arquitetura MVC (Model-View-Controller), embora seja uma API REST, então a "View" é substituída pela resposta JSON.
@@ -78,5 +80,5 @@ CREATE TABLE reservations (
 - Melhorar a documentação com Swagger/OpenAPI.
 
 ---
-Essa documentação pode ser expandida conforme o projeto evolui. 🚀
+
 
