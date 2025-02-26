@@ -7,7 +7,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -21,15 +20,15 @@ public class Reservation {
 
     private List<String> inventory;
 
-    private Date check_in;
+    private LocalDateTime check_in;
 
-    private Date check_out;
+    private LocalDateTime check_out;
 
     private boolean cleaning_tax;
 
     private List<String> other_services;
 
-    private Long tutor_id;
+    private Long user_id;
 
     private Long pet_id;
 

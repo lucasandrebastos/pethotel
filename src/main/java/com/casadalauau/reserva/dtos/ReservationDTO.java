@@ -1,6 +1,7 @@
 package com.casadalauau.reserva.dtos;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
-public record ReservationDTO(Date check_in, Date check_out, Long client_id, Long pet_id) {
+public record ReservationDTO(LocalDateTime check_in, LocalDateTime check_out, Long user_id, Long pet_id) {
 }

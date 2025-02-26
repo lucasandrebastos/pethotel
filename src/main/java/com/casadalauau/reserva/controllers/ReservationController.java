@@ -44,12 +44,12 @@ public class ReservationController {
         } catch (TransactionException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(null);
-        }  catch (Exception e) {
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(null);
         }
     }
 
-    }
+}
 
 
