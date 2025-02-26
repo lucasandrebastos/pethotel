@@ -1,4 +1,4 @@
-# Documentação Inicial - Casa da Lauau
+# Documentação Inicial - Pethotel
 
 ## Visão Geral
 Pethotel é uma API para gestão de clientes e booking de serviços pet, como estadia e creche. O sistema permite cadastrar clientes, agendar serviços e gerenciar reservas de forma eficiente.
