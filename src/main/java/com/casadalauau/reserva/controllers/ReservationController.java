@@ -4,9 +4,12 @@ package com.casadalauau.reserva.controllers;
 import com.casadalauau.reserva.services.ReservationService;
 import com.casadalauau.reserva.dtos.ReservationDTO;
 import com.casadalauau.reserva.models.Reservation;
+import org.hibernate.TransactionException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,14 +33,23 @@ public class ReservationController {
 
         try {
             List<Reservation> response = reservationService.getAllReservations();
-            return ResponseEntity.status(HttpStatus.OK).body(response);
+            if (response.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            }
+            return ResponseEntity.ok(response);
 
-        } catch (Exception e) {
-
-            throw new RuntimeException(e);
-
+        } catch (DataAccessException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(null);
+        } catch (TransactionException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(null);
+        }  catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(null);
         }
+    }
 
     }
 
-}
+
