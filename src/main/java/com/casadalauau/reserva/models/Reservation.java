@@ -1,5 +1,6 @@
 package com.casadalauau.reserva.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,7 +29,10 @@ public class Reservation {
 
     private List<String> other_services;
 
-    private Long user_id;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonBackReference
+    private User user;
 
     private Long pet_id;
 

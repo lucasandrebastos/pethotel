@@ -23,7 +23,7 @@ public class Pet {
     @JoinColumn(name = "user_id", nullable = false)
     @JsonBackReference
     private User user;
-
+    private Long tutor_id;
     private String breed;
     private LocalDate birth_date;
     private String size;

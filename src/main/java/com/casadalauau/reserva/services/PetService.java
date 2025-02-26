@@ -23,10 +23,11 @@ public class PetService {
     public void createPet(PetDTO petDTO) {
         Pet newPet = new Pet();
         BeanUtils.copyProperties(petDTO, newPet);
-        Long tutorId = petDTO.user_id();
-        System.out.println(tutorId);
-        User tutor = userRepository.findById(tutorId).orElseThrow(() -> new RuntimeException("Tutor não encontrado!"));
-        newPet.setUser(tutor);
+        Long userId = petDTO.user_id();
+        System.out.println(userId);
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User não encontrado!"));
+        newPet.setUser(user);
+        newPet.setTutor_id(userId);
         petRepository.save(newPet);
     }
 
