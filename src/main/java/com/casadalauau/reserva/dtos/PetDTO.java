@@ -5,7 +5,6 @@ import com.casadalauau.reserva.models.User;
 import java.time.LocalDate;
 
 public record PetDTO(
-        Long user_id,
         String name,
         String breed,
         LocalDate birth_date,

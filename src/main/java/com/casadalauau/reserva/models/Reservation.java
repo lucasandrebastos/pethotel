@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,6 +16,7 @@ import java.util.List;
 @Getter
 @Setter
 public class Reservation {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,19 +29,16 @@ public class Reservation {
 
     private boolean cleaning_tax;
 
-    private List<String> other_services;
+    private List<String> services = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    @JsonBackReference
-    private User user;
+    private Long user_id;
 
     private Long pet_id;
 
-    @CreationTimestamp
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime created_at;
 
-    @UpdateTimestamp
+    @Column(name = "update_at")
     private LocalDateTime update_at;
 
     private Status status;

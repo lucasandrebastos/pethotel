@@ -18,12 +18,7 @@ public class Pet {
     private Long id;
 
     private String name;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    @JsonBackReference
-    private User user;
-    private Long tutor_id;
+    private Long user_id;
     private String breed;
     private LocalDate birth_date;
     private String size;

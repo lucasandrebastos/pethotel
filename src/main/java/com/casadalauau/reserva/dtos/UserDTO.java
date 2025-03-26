@@ -7,7 +7,6 @@ public record UserDTO(
         String email,
         String phone_number,
         String emergency_phone_number,
-        UserRole userRole,
         String cpf,
         String address
 

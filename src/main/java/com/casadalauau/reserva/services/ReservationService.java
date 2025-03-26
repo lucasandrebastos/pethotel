@@ -31,25 +31,45 @@ public class ReservationService {
     PetRepository petRepository;
 
     public void createReservation(ReservationDTO reservationDTO) {
+        System.out.println(reservationDTO);
 
-        Reservation newReservation = new Reservation();
         LocalDateTime checkin = reservationDTO.check_in();
         LocalDateTime checkout = reservationDTO.check_out();
         LocalDateTime currentDateTime = LocalDateTime.now();
-        Long userId = reservationDTO.user_id();
-        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User não encontrado!"));
-        newReservation.setUser(user);
-        Long petId = reservationDTO.pet_id();
-        petRepository.findById(petId).orElseThrow(() -> new RuntimeException("Pet não encontrado!"));
 
         if (checkin.isBefore(currentDateTime) || checkout.isBefore(currentDateTime)) {
             throw new IllegalArgumentException("A data escolhida já passou");
         } else {
+            Reservation newReservation = new Reservation();
+
             BeanUtils.copyProperties(reservationDTO, newReservation);
             newReservation.setStatus(Status.awaiting_admin_approval);
             newReservation.setInventory(null);
-            newReservation.setOther_services(null);
+            newReservation.setServices(reservationDTO.services());
             newReservation.setCleaning_tax(false);
+
+            User newUser = new User();
+            BeanUtils.copyProperties(reservationDTO.user(), newUser);
+
+
+
+            Pet newPet = new Pet();
+            BeanUtils.copyProperties(reservationDTO.pet(), newPet);
+
+
+
+            petRepository.save(newPet);
+
+            Long petId = newPet.getId();
+            List<Long> pets = newUser.getPets();
+            pets.add(petId);
+
+            userRepository.save(newUser);
+            newReservation.setUser_id(newUser.getId());
+            newReservation.setPet_id(newPet.getId());
+            newPet.setUser_id(newUser.getId());
+            newReservation.setCreated_at(currentDateTime);
+            newReservation.setUpdate_at(currentDateTime);
             reservationRepository.save(newReservation);
         }
 
