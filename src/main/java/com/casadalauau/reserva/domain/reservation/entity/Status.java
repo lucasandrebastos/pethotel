@@ -1,4 +1,4 @@
-package com.casadalauau.reserva.models;
+package com.casadalauau.reserva.domain.reservation.entity;
 
 public enum Status {
     awaiting_admin_approval,

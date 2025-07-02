@@ -1,8 +1,8 @@
-package com.casadalauau.reserva.controllers;
+package com.casadalauau.reserva.api.controllers;
 
-import com.casadalauau.reserva.dtos.PetDTO;
-import com.casadalauau.reserva.models.Pet;
-import com.casadalauau.reserva.services.PetService;
+import com.casadalauau.reserva.api.dtos.CreatePetDTO;
+import com.casadalauau.reserva.domain.pet.entity.Pet;
+import com.casadalauau.reserva.domain.pet.service.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +20,8 @@ public class PetController {
     PetService petService;
 
     @PostMapping("/pets")
-    public ResponseEntity<String> createPet(@RequestBody PetDTO petDTO) {
-        petService.createPet(petDTO);
+    public ResponseEntity<String> createPet(@RequestBody CreatePetDTO createPetDTO) {
+        petService.createPet(createPetDTO);
         return ResponseEntity.ok("Pet criado com sucesso");
     }
 

@@ -1,9 +1,9 @@
-package com.casadalauau.reserva.controllers;
+package com.casadalauau.reserva.api.controllers;
 
 
-import com.casadalauau.reserva.services.ReservationService;
-import com.casadalauau.reserva.dtos.ReservationDTO;
-import com.casadalauau.reserva.models.Reservation;
+import com.casadalauau.reserva.domain.reservation.service.ReservationService;
+import com.casadalauau.reserva.api.dtos.CreateReservationDTO;
+import com.casadalauau.reserva.domain.reservation.entity.Reservation;
 import org.hibernate.TransactionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -22,8 +22,8 @@ public class ReservationController {
     ReservationService reservationService;
 
     @PostMapping("/reservations")
-    public ResponseEntity<String> createReservation(@RequestBody ReservationDTO reservationDTO) {
-        reservationService.createReservation(reservationDTO);
+    public ResponseEntity<String> createReservation(@RequestBody CreateReservationDTO createReservationDTO) {
+        reservationService.createReservation(createReservationDTO);
         return ResponseEntity.ok("Reserva criada com sucesso");
     }
 
